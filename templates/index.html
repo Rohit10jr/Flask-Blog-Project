@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block title %} 
+
+        <!-- Page Header-->
+        <!-- <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')"> -->
+        <header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/home-bg.jpg ') }}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>{{params['blog_name']}}</h1>
+                            <span class="subheading">we love to code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                   <!-- fro loop to fetch from the database -->
+                    
+                   {% for post in posts %}
+                   
+                   <!-- <li><a href="/post/{{ post.slug }}"></a></li> -->
+       
+                   <!-- Post preview-->
+                    <div class="post-preview">  
+                        <a href="/post/{{post.slug}}">
+                            <h2 class="post-title">{{ post.title }}</h2>
+                            <h4 class="post-subtitle">{{post.tagline}}</h4>
+                            <h6>{{post.content[0:100]}}...</h6>   
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="#!">admin</a>
+                            on {{post.date}}
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+      
+                    {% endfor %}
+                   
+                    <!-- Pager-->
+                    <!-- float-left -->
+                    <!-- <a class="btn btn-primary float-left" href="{{prev}}"> &larr;Previous</a>
+                    <a class="btn btn-primary float-right" href="{{next}}">Next &rarr;</a>
+                    mb-4
+''w3school''
+                    <ul class="pager">
+  <li class="previous"><a href="#">Previous</a></li>
+  <li class="next"><a href="#">Next</a></li>
+</ul>
+          -->
+        
+<!--               
+                    <div><a class="btn btn-primary text-uppercase d-flex justify-content-start" href="{{prev}}">← Previous </a></div>
+                   <div><a class="btn btn-primary text-uppercase d-flex justify-content-end" href="{{next}}">Next →</a></div>
+             -->
+             <div class="clearfix">
+          
+          	
+              <a class="btn btn-primary float-left" href="{{prev}}"> &larr;Previous</a>
+              <a class="btn btn-primary float-right" href="{{next}}">Next &rarr;</a>
+            </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+ 
